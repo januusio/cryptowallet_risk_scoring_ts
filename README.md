@@ -25,7 +25,7 @@ npm install --save januusio/cryptowallet_risk_scoring_ts
 
 ## Getting started
 
-Here's an example `index.ts` using the 3 different options for querying the API. If you want to run the example, put this in the `index.ts` file, build the package, and run it with `node ./dist/index.js`.
+Here's an example script that uses the library:
 
 ```typescript
 import { Configuration, DefaultApi } from 'cryptowallet_risk_scoring_ts';
@@ -45,16 +45,3 @@ const defaultApi = new DefaultApi(configuration);
   console.log(riskReport);
 })();
 ```
-
-## Dev
-### Building
-
-To build and compile the typescript sources to javascript use:
-```
-npm install
-npm run build
-```
-
-### Publishing
-
-First build the package then run ```npm publish```
