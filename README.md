@@ -20,7 +20,7 @@ It can be used in both TypeScript and JavaScript. In TypeScript, the definition 
 ## Installation
 
 ```
-npm install --save GIT_USER_ID/GIT_REPO_ID
+npm install --save januusio/cryptowallet_risk_scoring_ts
 ```
 
 ## Getting started
