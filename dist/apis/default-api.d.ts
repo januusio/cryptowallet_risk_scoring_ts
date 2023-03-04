@@ -32,6 +32,13 @@ export declare const DefaultApiAxiosParamCreator: (configuration?: Configuration
      * @throws {RequiredError}
      */
     scoreEthAddressGet: (address: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @param {string} address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    scoreOtherAddressGet: (address: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * DefaultApi - functional programming interface
@@ -52,6 +59,13 @@ export declare const DefaultApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     scoreEthAddressGet(address: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<RiskReport>>>;
+    /**
+     *
+     * @param {string} address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    scoreOtherAddressGet(address: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<RiskReport>>>;
 };
 /**
  * DefaultApi - factory interface
@@ -72,6 +86,13 @@ export declare const DefaultApiFactory: (configuration?: Configuration, basePath
      * @throws {RequiredError}
      */
     scoreEthAddressGet(address: string, options?: AxiosRequestConfig): Promise<AxiosResponse<RiskReport>>;
+    /**
+     *
+     * @param {string} address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    scoreOtherAddressGet(address: string, options?: AxiosRequestConfig): Promise<AxiosResponse<RiskReport>>;
 };
 /**
  * DefaultApi - object-oriented interface
@@ -96,4 +117,12 @@ export declare class DefaultApi extends BaseAPI {
      * @memberof DefaultApi
      */
     scoreEthAddressGet(address: string, options?: AxiosRequestConfig): Promise<AxiosResponse<RiskReport>>;
+    /**
+     *
+     * @param {string} address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    scoreOtherAddressGet(address: string, options?: AxiosRequestConfig): Promise<AxiosResponse<RiskReport>>;
 }

@@ -101,6 +101,45 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {string} address 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        scoreOtherAddressGet: async (address: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'address' is not null or undefined
+            if (address === null || address === undefined) {
+                throw new RequiredError('address','Required parameter address was null or undefined when calling scoreOtherAddressGet.');
+            }
+            const localVarPath = `/score/other/{address}`
+                .replace(`{${"address"}}`, encodeURIComponent(String(address)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -136,6 +175,19 @@ export const DefaultApiFp = function(configuration?: Configuration) {
                 return axios.request(axiosRequestArgs);
             };
         },
+        /**
+         * 
+         * @param {string} address 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async scoreOtherAddressGet(address: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<RiskReport>>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).scoreOtherAddressGet(address, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
     }
 };
 
@@ -162,6 +214,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         async scoreEthAddressGet(address: string, options?: AxiosRequestConfig): Promise<AxiosResponse<RiskReport>> {
             return DefaultApiFp(configuration).scoreEthAddressGet(address, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} address 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async scoreOtherAddressGet(address: string, options?: AxiosRequestConfig): Promise<AxiosResponse<RiskReport>> {
+            return DefaultApiFp(configuration).scoreOtherAddressGet(address, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -192,5 +253,15 @@ export class DefaultApi extends BaseAPI {
      */
     public async scoreEthAddressGet(address: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<RiskReport>> {
         return DefaultApiFp(this.configuration).scoreEthAddressGet(address, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * 
+     * @param {string} address 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public async scoreOtherAddressGet(address: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<RiskReport>> {
+        return DefaultApiFp(this.configuration).scoreOtherAddressGet(address, options).then((request) => request(this.axios, this.basePath));
     }
 }
